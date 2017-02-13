@@ -20,4 +20,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(i);
     }
+
+    public void onRegisterClick(View v) {
+        Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(i);
+    }
 }

@@ -26,5 +26,6 @@
         android:layout_marginTop="46dp"
         android:id="@+id/registration"
         android:layout_below="@+id/login"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onRegisterClick"/>
 </RelativeLayout>
