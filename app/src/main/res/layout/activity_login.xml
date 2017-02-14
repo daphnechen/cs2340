@@ -10,4 +10,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.gatech.waterapp.LoginActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="101dp"
+        android:id="@+id/Username"
+        android:text="Username"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/title"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/Username"
+        android:layout_alignLeft="@+id/Username"
+        android:layout_alignStart="@+id/Username"
+        android:layout_marginTop="19dp"
+        android:id="@+id/usertext"
+        android:singleLine="true"
+        android:hint="enter username here" />
+
+    <TextView
+        android:text="Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:id="@+id/password"
+        android:layout_below="@+id/usertext"
+        android:layout_alignLeft="@+id/usertext"
+        android:layout_alignStart="@+id/usertext" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="29dp"
+        android:id="@+id/passwordtext"
+        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:hint="enter password here" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordtext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/submit"
+        android:onClick="onSubmit"/>
 </RelativeLayout>
