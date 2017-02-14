@@ -25,4 +25,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(i);
     }
+
+
+
+
 }
