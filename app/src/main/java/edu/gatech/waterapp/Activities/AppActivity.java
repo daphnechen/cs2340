@@ -9,10 +9,13 @@ import edu.gatech.waterapp.R;
 
 public class AppActivity extends AppCompatActivity {
 
+    private String currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+        currentUser = getIntent().getStringExtra("id");
     }
 
     public void onLogout(View v) {

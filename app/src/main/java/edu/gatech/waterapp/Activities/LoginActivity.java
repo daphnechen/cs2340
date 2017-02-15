@@ -10,11 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import edu.gatech.waterapp.Models.User;
+import edu.gatech.waterapp.Models.UserList;
 import edu.gatech.waterapp.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private String username = "user";
-    private String password = "pass";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,16 @@ public class LoginActivity extends AppCompatActivity {
     public void onSubmit(View v) {
         EditText user = (EditText) findViewById(R.id.usertext);
         EditText pass = (EditText) findViewById(R.id.passwordtext);
-        if (user.getText().toString().equals(username) && pass.getText().toString().equals(password)) {
+        String match = "";
+        for (User u : UserList.getUserList()) {
+            if (u.getName().equals(user) && u.getPassword().equals(pass)) {
+                match = u.getName();
+                break;
+            }
+        }
+        if (!match.isEmpty()) {
             Intent i = new Intent(getApplicationContext(), AppActivity.class);
+            i.putExtra("id", match);
             startActivity(i);
         } else {
             new AlertDialog.Builder(this).setTitle("Login Failure")
