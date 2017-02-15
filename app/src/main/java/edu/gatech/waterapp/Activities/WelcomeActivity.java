@@ -1,4 +1,4 @@
-package edu.gatech.waterapp;
+package edu.gatech.waterapp.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,14 +6,14 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
 
+import edu.gatech.waterapp.R;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Button b = (Button) findViewById(R.id.login);
-        b.setText("Login");
     }
 
     public void onLoginClick(View v) {

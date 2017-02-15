@@ -1,9 +1,11 @@
-package edu.gatech.waterapp;
+package edu.gatech.waterapp.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import edu.gatech.waterapp.R;
 
 public class AppActivity extends AppCompatActivity {
 

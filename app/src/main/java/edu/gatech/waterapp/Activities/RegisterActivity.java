@@ -1,9 +1,11 @@
-package edu.gatech.waterapp;
+package edu.gatech.waterapp.Activities;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import edu.gatech.waterapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

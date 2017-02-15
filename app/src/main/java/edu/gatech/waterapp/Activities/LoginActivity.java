@@ -1,4 +1,4 @@
-package edu.gatech.waterapp;
+package edu.gatech.waterapp.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import edu.gatech.waterapp.R;
 
 public class LoginActivity extends AppCompatActivity {
     private String username = "user";
