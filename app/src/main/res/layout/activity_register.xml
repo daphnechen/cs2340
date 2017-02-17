@@ -10,4 +10,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.gatech.waterapp.Activities.RegisterActivity">
 
+    <TextView
+        android:text="Registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/registrationTitle"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="101dp"
+        android:id="@+id/registrationUsername"
+        android:text="Username"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/registrationUsername"
+        android:layout_alignLeft="@+id/registrationUsername"
+        android:layout_alignStart="@+id/registrationUsername"
+        android:layout_marginTop="19dp"
+        android:id="@+id/registrationUserText"
+        android:singleLine="true"
+        android:hint="create username" />
+
+    <TextView
+        android:text="Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:id="@+id/registrationPassword"
+        android:layout_below="@+id/registrationUserText"
+        android:layout_alignLeft="@+id/registrationUserText"
+        android:layout_alignStart="@+id/registrationUserText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="29dp"
+        android:id="@+id/registrationPasswordText"
+        android:layout_below="@+id/registrationPassword"
+        android:layout_alignLeft="@+id/registrationPassword"
+        android:layout_alignStart="@+id/registrationPassword"
+        android:hint="create password" />
+
+    <Button
+        android:text="Create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registrationPasswordText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/create" />
+
 </RelativeLayout>
