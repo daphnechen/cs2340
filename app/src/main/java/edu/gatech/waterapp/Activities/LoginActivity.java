@@ -10,11 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import edu.gatech.waterapp.Models.User;
+import edu.gatech.waterapp.Models.UserList;
 import edu.gatech.waterapp.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private String username = "user";
-    private String password = "pass";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,23 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Called When the Submit Button is Clicked.
+     * Checks the username and password against the list and logs in if successful.
+     * @param v The current view
+     */
     public void onSubmit(View v) {
         EditText user = (EditText) findViewById(R.id.usertext);
         EditText pass = (EditText) findViewById(R.id.passwordtext);
-        if (user.getText().toString().equals(username) && pass.getText().toString().equals(password)) {
+        User match = null;
+        for (User u : UserList.getUserList()) {
+            if (u.getName().equals(user.getText().toString().trim()) && u.getPassword().equals(pass.getText().toString().trim())) {
+                match = u;
+                break;
+            }
+        }
+        if (match != null) {
+            UserList.currentUser = match;
             Intent i = new Intent(getApplicationContext(), AppActivity.class);
             startActivity(i);
         } else {

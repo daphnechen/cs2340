@@ -7,6 +7,8 @@ import android.view.View;
 
 import edu.gatech.waterapp.R;
 
+import static edu.gatech.waterapp.Models.UserList.currentUser;
+
 public class AppActivity extends AppCompatActivity {
 
     @Override
@@ -15,8 +17,18 @@ public class AppActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app);
     }
 
+    /**
+     * Called when the logout button is clicked.
+     * Reloads the WelcomeActivity
+     * @param v the current view
+     */
     public void onLogout(View v) {
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
+        startActivity(i);
+    }
+
+    public void onProfileClick(View v) {
+        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(i);
     }
 }
