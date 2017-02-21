@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -51,17 +52,23 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Called when the submit button is clicked.
+     * Creates a new user with the specified username, password, and AccountType
+     * @param v the current view
+     */
     public void onSubmit(View v) {
         EditText user = (EditText) findViewById(R.id.usertext);
         EditText pass = (EditText) findViewById(R.id.passwordtext);
         String username = user.getText().toString();
-        if (UserList.getUser(username) != null) {
+        if (UserList.getUser(username) == null) {
             String password = pass.getText().toString();
             AccountType type = AccountType.values()[typeSpinner.getSelectedItemPosition()];
             User u = new User(username, password, type);
             if (UserList.addUser(u)) {
+                Log.d("Register", u.toString());
+                UserList.currentUser = u;
                 Intent i = new Intent(getApplicationContext(), AppActivity.class);
-                i.putExtra("id", username);
                 startActivity(i);
             } else {
                 new AlertDialog.Builder(this).setTitle("Creation Failure").setMessage("Unable to create account.  Please try again later.")

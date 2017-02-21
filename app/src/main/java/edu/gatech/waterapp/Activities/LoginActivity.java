@@ -38,19 +38,24 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Called When the Submit Button is Clicked.
+     * Checks the username and password against the list and logs in if successful.
+     * @param v The current view
+     */
     public void onSubmit(View v) {
         EditText user = (EditText) findViewById(R.id.usertext);
         EditText pass = (EditText) findViewById(R.id.passwordtext);
-        String match = "";
+        User match = null;
         for (User u : UserList.getUserList()) {
-            if (u.getName().equals(user) && u.getPassword().equals(pass)) {
-                match = u.getName();
+            if (u.getName().equals(user.getText().toString().trim()) && u.getPassword().equals(pass.getText().toString().trim())) {
+                match = u;
                 break;
             }
         }
-        if (!match.isEmpty()) {
+        if (match != null) {
+            UserList.currentUser = match;
             Intent i = new Intent(getApplicationContext(), AppActivity.class);
-            i.putExtra("id", match);
             startActivity(i);
         } else {
             new AlertDialog.Builder(this).setTitle("Login Failure")

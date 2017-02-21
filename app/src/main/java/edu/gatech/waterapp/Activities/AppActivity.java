@@ -7,19 +7,28 @@ import android.view.View;
 
 import edu.gatech.waterapp.R;
 
-public class AppActivity extends AppCompatActivity {
+import static edu.gatech.waterapp.Models.UserList.currentUser;
 
-    private String currentUser;
+public class AppActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        currentUser = getIntent().getStringExtra("id");
     }
 
+    /**
+     * Called when the logout button is clicked.
+     * Reloads the WelcomeActivity
+     * @param v the current view
+     */
     public void onLogout(View v) {
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
+        startActivity(i);
+    }
+
+    public void onProfileClick(View v) {
+        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(i);
     }
 }
