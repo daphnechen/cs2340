@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "979066211308",
+    "firebase_url": "https://water-app-9bbc0.firebaseio.com",
+    "project_id": "water-app-9bbc0",
+    "storage_bucket": "water-app-9bbc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979066211308:android:1094d96198f6ecd1",
+        "android_client_info": {
+          "package_name": "edu.gatech.waterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979066211308-deuestdgvovi3h23453i467nb88uevtg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.gatech.waterapp",
+            "certificate_hash": "45f91ef70703dbfa2d85a364bfb366a844be33dc"
+          }
+        },
+        {
+          "client_id": "979066211308-tdsoo7lvorijoe0j0bpjc6roashfl45o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUyb4HR_Og3lxiI1nOCG-wCEwZQmiFgUI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979066211308-tdsoo7lvorijoe0j0bpjc6roashfl45o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
