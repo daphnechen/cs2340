@@ -67,8 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
             User u = new User(username, password, type);
             if (UserList.addUser(u)) {
                 Log.d("Register", u.toString());
-                UserList.currentUser = u;
-                Intent i = new Intent(getApplicationContext(), AppActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             } else {
                 new AlertDialog.Builder(this).setTitle("Creation Failure").setMessage("Unable to create account.  Please try again later.")
