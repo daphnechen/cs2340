@@ -7,6 +7,7 @@ import android.view.View;
 
 import edu.gatech.waterapp.R;
 
+import static edu.gatech.waterapp.Controllers.Database.mAuth;
 import static edu.gatech.waterapp.Models.UserList.currentUser;
 
 public class AppActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class AppActivity extends AppCompatActivity {
      * @param v the current view
      */
     public void onLogout(View v) {
+        mAuth.signOut();
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
         startActivity(i);
     }
