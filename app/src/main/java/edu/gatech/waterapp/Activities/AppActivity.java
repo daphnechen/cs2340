@@ -33,4 +33,13 @@ public class AppActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(i);
     }
+
+    public void onCreateReportClicked(View v) {
+        Intent i = new Intent(getApplicationContext(), ReportActivity.class);
+        startActivity(i);
+    }
+
+    public void onReportListClicked(View v) {
+
+    }
 }
