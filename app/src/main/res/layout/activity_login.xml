@@ -16,8 +16,8 @@
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="101dp"
-        android:id="@+id/Username"
-        android:text="Username"
+        android:id="@+id/Email"
+        android:text="Email Address"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -37,13 +37,13 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_below="@+id/Username"
-        android:layout_alignLeft="@+id/Username"
-        android:layout_alignStart="@+id/Username"
+        android:layout_below="@+id/Email"
+        android:layout_alignLeft="@+id/Email"
+        android:layout_alignStart="@+id/Email"
         android:layout_marginTop="19dp"
         android:id="@+id/usertext"
         android:singleLine="true"
-        android:hint="enter username here" />
+        android:hint="test@example.com" />
 
     <TextView
         android:text="Password"

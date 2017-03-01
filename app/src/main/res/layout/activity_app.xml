@@ -11,22 +11,42 @@
     tools:context="edu.gatech.waterapp.Activities.AppActivity">
 
     <Button
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        android:id="@+id/logout"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onLogout"/>
-
-    <Button
         android:text="Edit Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="32dp"
         android:id="@+id/profileButton"
         android:onClick="onProfileClick"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:id="@+id/logout"
+        android:onClick="onLogout"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Create Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportButton"
+        android:layout_marginTop="89dp"
+        android:layout_below="@+id/profileButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="onCreateReportClicked"/>
+
+    <Button
+        android:text="View Report List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listButton"
+        android:layout_below="@+id/reportButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:onClick="onReportListClicked"/>
 </RelativeLayout>

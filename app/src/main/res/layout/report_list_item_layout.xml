@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Report #"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberLabel"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="Reporter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reporterLabel"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="Location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PlaceName"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="Water Type, Condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/waterLabel"
+        android:layout_marginBottom="20dp" />
+</LinearLayout>

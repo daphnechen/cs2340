@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +18,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Arrays;
 
+import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.Models.AccountType;
 import edu.gatech.waterapp.Models.User;
 import edu.gatech.waterapp.Models.UserList;
@@ -29,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView nameLabel, emailLabel;
     private Spinner typeSpinner;
     private User currentUser;
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +51,37 @@ public class ProfileActivity extends AppCompatActivity {
         nameLabel = (TextView) findViewById(R.id.username);
         emailLabel = (TextView) findViewById(R.id.email);
 
-        currentUser = UserList.currentUser;
-        if (currentUser.getName() != null && !currentUser.getName().isEmpty()) {
-            nameLabel.setText(currentUser.getName());
-        }
-        if (currentUser.getEmail() != null && !currentUser.getEmail().isEmpty()) {
-            emailLabel.setText(currentUser.getEmail());
-        }
-
         typeSpinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,
                 Arrays.asList("User", "Worker", "Manager", "Admin"));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(adapter);
-        if (currentUser.getAccountType() != null) {
-            typeSpinner.setSelection(currentUser.getAccountType().ordinal());
-        }
+
+        ref = Database.getReference("users/"+Database.currentUser.getUid());
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String username = dataSnapshot.child("username").getValue(String.class);
+                String email = Database.currentUser.getEmail();
+                AccountType acctype = AccountType.valueOf(dataSnapshot.child("accountType").getValue(String.class));
+                if (!username.isEmpty()) {
+                    nameLabel.setText(username);
+                }
+                emailLabel.setText(email);
+                typeSpinner.setSelection(acctype.ordinal());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                currentUser.setAccountType(AccountType.values()[i]);
+                ref.child("accountType").setValue(AccountType.values()[i].toString());
             }
 
             @Override
@@ -104,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String newName = ((EditText)editView.findViewById(R.id.newName)).getText().toString().trim();
                 if (!newName.isEmpty()) {
-                    currentUser.setName(newName);
+                    ref.child("username").setValue(newName);
                     nameLabel.setText(newName);
                     popup.dismiss();
                     Toast.makeText(c, "Username edited successfully!", Toast.LENGTH_SHORT).show();
@@ -133,12 +154,21 @@ public class ProfileActivity extends AppCompatActivity {
         popup.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newEmail = ((EditText)editView.findViewById(R.id.newEmail)).getText().toString().trim();
+                final String newEmail = ((EditText)editView.findViewById(R.id.newEmail)).getText().toString().trim();
                 if (!newEmail.isEmpty()) {
-                    currentUser.setEmail(newEmail);
-                    emailLabel.setText(newEmail);
-                    popup.dismiss();
-                    Toast.makeText(c, "Email saved successfully!", Toast.LENGTH_SHORT).show();
+                    Database.currentUser.updateEmail(newEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                emailLabel.setText(newEmail);
+                                popup.dismiss();
+                                Toast.makeText(c, "Email saved successfully!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(c, "An error occurred while changing your email.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                 } else {
                     Toast.makeText(c, "Please enter a valid email.", Toast.LENGTH_SHORT).show();
                 }

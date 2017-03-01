@@ -4,40 +4,35 @@ package edu.gatech.waterapp.Models;
  * Created by Derian on 2/15/2017.
  */
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a user of the water app.
  */
 public class User {
 
-    private String username;
-    private String password;
+    private String username = "";
     private AccountType accountType;
     private String email;
 
     /**
      * Creates a new user.
-     * @param name the user's username
-     * @param password the user's password
+     * @param email the user's email address
      * @param type the user's account type
      */
-    public User(String name, String password, AccountType type) {
-        this.username = name;
-        this.password = password;
+    public User(String email, AccountType type) {
+        this.email = email;
         accountType = type;
     }
+
+    public User() {}
 
     /**
      * @return this user's username
      */
     public String getName() {
         return username;
-    }
-
-    /**
-     * @return this user's password
-     */
-    public String getPassword() {
-        return password;
     }
 
     /**
@@ -71,14 +66,6 @@ public class User {
     }
 
     /**
-     * Sets this user's password
-     *  @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
      * Sets this user's account type
      *  @param accountType the account type to set
      */
@@ -86,6 +73,14 @@ public class User {
         this.accountType = accountType;
     }
 
+
+    public Map<String, String> toMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("email", email);
+        map.put("username", username);
+        map.put("accountType", accountType.toString());
+        return map;
+    }
 
     @Override
     public String toString() {
