@@ -123,8 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                         AccountType type = AccountType.values()[typeSpinner.getSelectedItemPosition()];
                         User u = new User(email, type);
                         ref.child(user.getUid()).setValue(u.toMap());
-                        Intent i = new Intent(getApplicationContext(), AppActivity.class);
-                        startActivity(i);
+                        finish();
                     }
                 }
             });
