@@ -1,6 +1,7 @@
 package edu.gatech.waterapp.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,23 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import edu.gatech.waterapp.Controllers.Database;
+import edu.gatech.waterapp.Models.Place;
 import edu.gatech.waterapp.Models.Report;
 import edu.gatech.waterapp.Models.User;
+import edu.gatech.waterapp.Models.WaterCondition;
+import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
 
 import static com.google.android.gms.analytics.internal.zzy.h;
 import static com.google.android.gms.analytics.internal.zzy.o;
+import static com.google.android.gms.analytics.internal.zzy.r;
+import static com.google.android.gms.analytics.internal.zzy.u;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -48,7 +58,20 @@ public class ListActivity extends AppCompatActivity {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Report r = dataSnapshot.getValue(Report.class);
+                int number = dataSnapshot.child("reportNumber").getValue(Integer.class);
+                Date timestamp = dataSnapshot.child("timestamp").getValue(Date.class);
+                WaterType type = WaterType.valueOf(dataSnapshot.child("waterType").getValue(String.class));
+                WaterCondition condition = WaterCondition.valueOf(dataSnapshot.child("waterCondition").getValue(String.class));
+                String reporter = dataSnapshot.child("reporter").getValue(String.class);
+                Place location = new Place();
+                location.setAddress(dataSnapshot.child("location").child("address").getValue(String.class));
+                location.setName(dataSnapshot.child("location").child("name").getValue(String.class));
+                GenericTypeIndicator<List<Double>> t = new GenericTypeIndicator<List<Double>>() {};
+                List<Double> latlng = dataSnapshot.child("location").child("location").getValue(t);
+                location.setLocation(new LatLng(latlng.get(0),latlng.get(1)));
+                Report r = new Report(timestamp, reporter, location);
+                r.setWaterType(type);
+                r.setWaterCondition(condition);
                 Log.d("ListActivity", "Report #"+r.getReportNumber()+" retrieved from server.");
                 reports.add(r);
                 adapter.notifyDataSetChanged();
@@ -61,9 +84,9 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Report r = dataSnapshot.getValue(Report.class);
+                int reportNumber = dataSnapshot.child("reportNumber").getValue(Integer.class);
                 for (int i = 0; i < reports.size(); i++) {
-                    if (reports.get(i).getReportNumber() == r.getReportNumber()) {
+                    if (reports.get(i).getReportNumber() == reportNumber) {
                         reports.remove(i);
                         break;
                     }
@@ -142,9 +165,9 @@ public class ListActivity extends AppCompatActivity {
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    User u = dataSnapshot.getValue(User.class);
+                    String name = dataSnapshot.child("username").getValue(String.class);
                     SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
-                    holder.reporter.setText("Reported by "+u.getName() + " at " + ft.format(report.getTimestamp()));
+                    holder.reporter.setText("Reported by "+ name + " on " + ft.format(report.getTimestamp()));
                 }
 
                 @Override
@@ -152,7 +175,7 @@ public class ListActivity extends AppCompatActivity {
 
                 }
             });
-            holder.water.setText("Water Type: " + report.getWaterType()+ "\n Water Condition: "+ report.getWaterCondition());
+            holder.water.setText("Water Type: " + report.getWaterType()+ "\nWater Condition: "+ report.getWaterCondition());
 
 
 
