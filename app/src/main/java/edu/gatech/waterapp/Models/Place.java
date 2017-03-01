@@ -2,7 +2,10 @@ package edu.gatech.waterapp.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,6 +18,8 @@ public class Place {
     private LatLng location;
     private String address;
     private String name;
+
+    public Place() {}
 
     public Place(com.google.android.gms.location.places.Place place) {
         location = place.getLatLng();
@@ -49,7 +54,7 @@ public class Place {
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
-        double[] latlng = {location.latitude, location.longitude};
+        List<Double> latlng = new ArrayList<>(Arrays.asList(location.latitude, location.longitude));
         map.put("location", latlng);
         map.put("address", address);
         return map;

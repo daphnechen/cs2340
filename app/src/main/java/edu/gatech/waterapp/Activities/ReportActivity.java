@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.places.Place;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Map;
 
 import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.Models.Report;
@@ -27,6 +29,7 @@ import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
 
+import static android.os.Build.VERSION_CODES.M;
 import static com.google.android.gms.analytics.internal.zzy.m;
 import static com.google.android.gms.analytics.internal.zzy.p;
 import static com.google.android.gms.analytics.internal.zzy.t;
@@ -55,7 +58,7 @@ public class ReportActivity extends AppCompatActivity {
         typeSpinner.setAdapter(adapter);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,
-                Arrays.asList("Waster", "Treatable-Clear", "Treatable-Muddy", "Potable"));
+                Arrays.asList("Waste", "Treatable-Clear", "Treatable-Muddy", "Potable"));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         conditionSpinner.setAdapter(adapter2);
     }
@@ -75,11 +78,13 @@ public class ReportActivity extends AppCompatActivity {
         if (location == null) {
             Toast.makeText(getApplicationContext(), "Please select a location!", Toast.LENGTH_SHORT).show();
         } else {
-            Report report = new Report(new Date(), Database.currentUser.getEmail(), new edu.gatech.waterapp.Models.Place(location));
+            Report report = new Report(new Date(), Database.currentUser.getUid(), new edu.gatech.waterapp.Models.Place(location));
             report.setWaterCondition(WaterCondition.values()[conditionSpinner.getSelectedItemPosition()]);
             report.setWaterType(WaterType.values()[typeSpinner.getSelectedItemPosition()]);
+            Map<String, Object> map = report.toMap();
+            map.put("reporter", Database.currentUser.getUid());
             DatabaseReference ref = Database.getReference("reports");
-            ref.push().setValue(report).addOnCompleteListener(new OnCompleteListener<Void>() {
+            ref.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
@@ -97,6 +102,7 @@ public class ReportActivity extends AppCompatActivity {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 location = PlacePicker.getPlace(this, data);
+                ((TextView)findViewById(R.id.locationText)).setText("Selected: " + location.getName());
             }
         }
     }

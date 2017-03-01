@@ -1,6 +1,11 @@
 package edu.gatech.waterapp.Models;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.google.android.gms.analytics.internal.zzy.p;
+import static com.google.android.gms.cast.internal.zzl.pl;
 
 
 /**
@@ -18,6 +23,7 @@ public class Report {
     private WaterCondition waterCondition;
 
 
+    public Report() {}
 
     public Report(Date timestamp, String reporter, Place location) {
         this.timestamp = timestamp;
@@ -51,5 +57,22 @@ public class Report {
         return reporter;
     }
 
+    public WaterCondition getWaterCondition() {
+        return waterCondition;
+    }
 
+    public WaterType getWaterType() {
+        return waterType;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("reportNumber", reportNumber);
+        map.put("reporter", reporter);
+        map.put("location", location.toMap());
+        map.put("waterCondition", waterCondition.toString());
+        map.put("waterType", waterType.toString());
+        map.put("timestamp", timestamp);
+        return map;
+    }
 }

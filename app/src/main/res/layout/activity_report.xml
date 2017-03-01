@@ -21,18 +21,6 @@
         android:textSize="25sp"
         android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="Water Type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/placePicker"
-        android:layout_toLeftOf="@+id/placePicker"
-        android:layout_toStartOf="@+id/placePicker"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="32dp" />
-
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,16 +41,6 @@
         android:layout_marginTop="41dp" />
 
     <Button
-        android:text="Choose Location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:id="@+id/placePicker"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:onClick="onSetLocationClicked"/>
-
-    <Button
         android:text="Submit Report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,6 +58,36 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Choose Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:id="@+id/placePicker"
+        android:onClick="onSetLocationClicked"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Water Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/placePicker"
+        android:layout_toLeftOf="@+id/placePicker"
+        android:layout_toStartOf="@+id/placePicker" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationText"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/placePicker"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

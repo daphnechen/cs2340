@@ -40,6 +40,7 @@ public class AppActivity extends AppCompatActivity {
     }
 
     public void onReportListClicked(View v) {
-
+        Intent i = new Intent(getApplicationContext(), ListActivity.class);
+        startActivity(i);
     }
 }
