@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+
+import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.R;
 
 import static edu.gatech.waterapp.Controllers.Database.mAuth;
@@ -16,6 +19,7 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+
     }
 
     /**

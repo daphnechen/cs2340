@@ -15,7 +15,6 @@ import static com.google.android.gms.cast.internal.zzl.pl;
 public class Report {
 
     private Date timestamp;
-    private static int nextReportNum = 1;
     private int reportNumber;
     private String reporter;
     private Place location;
@@ -29,12 +28,14 @@ public class Report {
         this.timestamp = timestamp;
         this.reporter = reporter;
         this.location = location;
-        reportNumber = nextReportNum;
-        nextReportNum++;
     }
 
     public void setWaterCondition(WaterCondition waterCondition) {
         this.waterCondition = waterCondition;
+    }
+
+    public void setReportNumber(int reportNumber) {
+        this.reportNumber = reportNumber;
     }
 
     public void setWaterType(WaterType waterType) {

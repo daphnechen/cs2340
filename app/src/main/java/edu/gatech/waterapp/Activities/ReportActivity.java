@@ -11,13 +11,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.contextmanager.internal.InterestUpdateBatchImpl;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -78,23 +82,38 @@ public class ReportActivity extends AppCompatActivity {
         if (location == null) {
             Toast.makeText(getApplicationContext(), "Please select a location!", Toast.LENGTH_SHORT).show();
         } else {
-            Report report = new Report(new Date(), Database.currentUser.getUid(), new edu.gatech.waterapp.Models.Place(location));
+            final Report report = new Report(new Date(), Database.currentUser.getUid(), new edu.gatech.waterapp.Models.Place(location));
             report.setWaterCondition(WaterCondition.values()[conditionSpinner.getSelectedItemPosition()]);
             report.setWaterType(WaterType.values()[typeSpinner.getSelectedItemPosition()]);
-            Map<String, Object> map = report.toMap();
+            final Map<String, Object> map = report.toMap();
             map.put("reporter", Database.currentUser.getUid());
-            DatabaseReference ref = Database.getReference("reports");
-            ref.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            final DatabaseReference reportnumref = Database.getReference("nextReportNumber");
+            reportnumref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Report created successfully!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "There was an error creating this report!", Toast.LENGTH_SHORT).show();
-                    }
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    final int reportNum = dataSnapshot.getValue(Integer.class);
+                    map.put("reportNumber", reportNum);
+                    final DatabaseReference ref = Database.getReference("reports");
+                    ref.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Report created successfully!", Toast.LENGTH_SHORT).show();
+                                reportnumref.setValue(reportNum + 1);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "There was an error creating this report!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
+
         }
     }
 

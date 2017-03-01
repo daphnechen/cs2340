@@ -1,10 +1,8 @@
 package edu.gatech.waterapp.Controllers;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -16,10 +14,9 @@ public final class Database {
     public static FirebaseAuth mAuth;
     public static FirebaseAuth.AuthStateListener mAuthListener;
     private static FirebaseDatabase database;
-
     public static FirebaseUser currentUser;
-
     private static boolean initialized = false;
+
 
     public static void initialize() {
         if (!initialized) {

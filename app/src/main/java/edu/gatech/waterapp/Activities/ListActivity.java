@@ -72,6 +72,7 @@ public class ListActivity extends AppCompatActivity {
                 Report r = new Report(timestamp, reporter, location);
                 r.setWaterType(type);
                 r.setWaterCondition(condition);
+                r.setReportNumber(number);
                 Log.d("ListActivity", "Report #"+r.getReportNumber()+" retrieved from server.");
                 reports.add(r);
                 adapter.notifyDataSetChanged();
