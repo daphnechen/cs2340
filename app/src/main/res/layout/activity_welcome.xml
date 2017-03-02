@@ -28,4 +28,12 @@
         android:layout_below="@+id/login"
         android:layout_centerHorizontal="true"
         android:onClick="onRegisterClick"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/facebook"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

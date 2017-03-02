@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
                 String username = dataSnapshot.child("username").getValue(String.class);
                 String email = Database.currentUser.getEmail();
                 AccountType acctype = AccountType.valueOf(dataSnapshot.child("accountType").getValue(String.class));
-                if (!username.isEmpty()) {
+                if (username != null && !username.isEmpty()) {
                     nameLabel.setText(username);
                 }
                 emailLabel.setText(email);

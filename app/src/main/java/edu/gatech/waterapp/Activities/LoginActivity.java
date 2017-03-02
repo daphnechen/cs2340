@@ -11,12 +11,31 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import edu.gatech.waterapp.Controllers.Database;
+import edu.gatech.waterapp.Models.AccountType;
+import edu.gatech.waterapp.Models.User;
 import edu.gatech.waterapp.R;
+
+import static edu.gatech.waterapp.Controllers.Database.mAuth;
+import static edu.gatech.waterapp.R.id.typeSpinner;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+
+
     /**
      * Called When the Submit Button is Clicked.
      * Checks the username and password against the list and logs in if successful.
@@ -69,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter a valid email address!", Toast.LENGTH_SHORT).show();
         } else {
             String password = passText.getText().toString().trim();
-            Database.mAuth.signInWithEmailAndPassword(email, password)
+            mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
