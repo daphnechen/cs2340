@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.contextmanager.internal.InterestUpdateBatchImpl;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
@@ -32,13 +31,6 @@ import edu.gatech.waterapp.Models.Report;
 import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
-
-import static android.os.Build.VERSION_CODES.M;
-import static com.google.android.gms.analytics.internal.zzy.m;
-import static com.google.android.gms.analytics.internal.zzy.p;
-import static com.google.android.gms.analytics.internal.zzy.t;
-import static com.google.android.gms.cast.internal.zzl.pl;
-import static com.google.android.gms.internal.zzng.fi;
 
 public class ReportActivity extends AppCompatActivity {
 

@@ -31,22 +31,33 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Create Report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reportButton"
-        android:layout_marginTop="89dp"
-        android:layout_below="@+id/profileButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="onCreateReportClicked"/>
-
-    <Button
         android:text="View Report List"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listButton"
+        android:layout_marginTop="27dp"
+        android:onClick="onReportListClicked"
         android:layout_below="@+id/reportButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        android:onClick="onReportListClicked"/>
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="View Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapButton"
+        android:layout_below="@+id/listButton"
+        android:layout_alignLeft="@+id/logout"
+        android:layout_alignStart="@+id/logout"
+        android:layout_marginTop="29dp"
+        android:onClick="onMapClicked"/>
+
+    <Button
+        android:text="Create Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportButton"
+        android:layout_marginTop="26dp"
+        android:onClick="onCreateReportClicked"
+        android:layout_below="@+id/profileButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

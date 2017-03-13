@@ -29,7 +29,9 @@
         <activity android:name=".Activities.AppActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.ReportActivity" />
-        <activity android:name=".Activities.ListActivity"></activity>
+        <activity android:name=".Activities.ListActivity" />
+        <activity android:name=".Activities.MapActivity">
+        </activity>
     </application>
 
 </manifest>

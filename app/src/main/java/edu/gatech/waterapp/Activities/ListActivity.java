@@ -34,10 +34,6 @@ import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
 
-import static com.google.android.gms.analytics.internal.zzy.h;
-import static com.google.android.gms.analytics.internal.zzy.o;
-import static com.google.android.gms.analytics.internal.zzy.r;
-import static com.google.android.gms.analytics.internal.zzy.u;
 
 public class ListActivity extends AppCompatActivity {
 

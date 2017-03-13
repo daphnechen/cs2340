@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.google.android.gms.analytics.internal.zzy.p;
-import static com.google.android.gms.cast.internal.zzl.pl;
 
 
 /**
@@ -28,6 +26,10 @@ public class Report {
         this.timestamp = timestamp;
         this.reporter = reporter;
         this.location = location;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
     }
 
     public void setWaterCondition(WaterCondition waterCondition) {

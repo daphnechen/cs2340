@@ -47,4 +47,9 @@ public class AppActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), ListActivity.class);
         startActivity(i);
     }
+
+    public void onMapClicked(View v) {
+        Intent i = new Intent (getApplicationContext(), MapActivity.class);
+        startActivity(i);
+    }
 }
