@@ -1,10 +1,9 @@
 package edu.gatech.waterapp.Activities;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -59,6 +58,10 @@ public class ReportActivity extends AppCompatActivity {
         conditionSpinner.setAdapter(adapter2);
     }
 
+    /**
+     * When user clicks setLocation button, this method makes the map appear
+     * @param v the current view
+     */
     public void onSetLocationClicked(View v) {
 
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder().setLatLngBounds(
@@ -70,6 +73,10 @@ public class ReportActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When the user clicks the submit button, this method will submit the user's report
+     * @param v the current view
+     */
     public void onSubmitClicked(View v) {
         if (location == null) {
             Toast.makeText(getApplicationContext(), "Please select a location!", Toast.LENGTH_SHORT).show();
@@ -109,6 +116,7 @@ public class ReportActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {

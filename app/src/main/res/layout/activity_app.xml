@@ -35,9 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listButton"
-        android:layout_marginTop="27dp"
         android:onClick="onReportListClicked"
-        android:layout_below="@+id/reportButton"
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/mapButton"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -45,11 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mapButton"
-        android:layout_below="@+id/listButton"
+        android:onClick="onMapClicked"
+        android:layout_marginBottom="38dp"
+        android:layout_above="@+id/logout"
         android:layout_alignLeft="@+id/logout"
-        android:layout_alignStart="@+id/logout"
-        android:layout_marginTop="29dp"
-        android:onClick="onMapClicked"/>
+        android:layout_alignStart="@+id/logout" />
 
     <Button
         android:text="Create Report"
@@ -59,5 +59,14 @@
         android:layout_marginTop="26dp"
         android:onClick="onCreateReportClicked"
         android:layout_below="@+id/profileButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/purityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Purity Report"
+        android:layout_below="@+id/reportButton"
+        android:onClick="onPurityReportClicked"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
