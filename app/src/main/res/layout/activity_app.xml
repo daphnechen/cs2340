@@ -31,32 +31,11 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="View Report List"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listButton"
-        android:onClick="onReportListClicked"
-        android:layout_marginBottom="25dp"
-        android:layout_above="@+id/mapButton"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="View Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mapButton"
-        android:onClick="onMapClicked"
-        android:layout_marginBottom="38dp"
-        android:layout_above="@+id/logout"
-        android:layout_alignLeft="@+id/logout"
-        android:layout_alignStart="@+id/logout" />
-
-    <Button
         android:text="Create Report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reportButton"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="11dp"
         android:onClick="onCreateReportClicked"
         android:layout_below="@+id/profileButton"
         android:layout_centerHorizontal="true" />
@@ -66,7 +45,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Purity Report"
-        android:layout_below="@+id/reportButton"
         android:onClick="onPurityReportClicked"
+        android:layout_below="@+id/reportButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:text="View Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapButton"
+        android:onClick="onMapClicked"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/logout"
+        android:layout_alignLeft="@+id/logout"
+        android:layout_alignStart="@+id/logout" />
+
+    <Button
+        android:text="View Report List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listButton"
+        android:onClick="onReportListClicked"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/mapButton"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Show Graph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/graphButton"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/profileButton"
+        android:layout_alignEnd="@+id/profileButton"
+        android:onClick="onGraphClicked" />
 </RelativeLayout>

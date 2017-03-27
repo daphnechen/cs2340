@@ -18,23 +18,31 @@ import static edu.gatech.waterapp.Controllers.Database.mAuth;
 
 public class AppActivity extends AppCompatActivity {
 
-    Button b;
+    Button purityButton;
+    Button graphButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        b = (Button) findViewById(R.id.purityButton);
+        purityButton = (Button) findViewById(R.id.purityButton);
+        graphButton = (Button)  findViewById(R.id.graphButton);
         DatabaseReference ref = Database.getReference("users/" + Database.currentUser.getUid() + "/accountType");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String accountType = dataSnapshot.getValue(String.class);
                 if ("USER".equals(accountType)) {
-                    b.setVisibility(View.GONE);
+                    purityButton.setVisibility(View.GONE);
                 } else {
-                    b.setVisibility(View.VISIBLE);
+                    purityButton.setVisibility(View.VISIBLE);
                 }
+                if ("MANAGER".equals(accountType)) {
+                    graphButton.setVisibility(View.VISIBLE);
+                } else {
+                    graphButton.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
@@ -97,6 +105,11 @@ public class AppActivity extends AppCompatActivity {
      */
     public void onPurityReportClicked(View v) {
         Intent i = new Intent(getApplicationContext(), PurityActivity.class);
+        startActivity(i);
+    }
+
+    public void onGraphClicked(View v) {
+        Intent i = new Intent(getApplicationContext(), GraphActivity.class);
         startActivity(i);
     }
 
