@@ -60,6 +60,8 @@ public class PurityListActivity extends AppCompatActivity {
                 WaterCondition condition = WaterCondition.valueOf(dataSnapshot.child("waterCondition").getValue(String.class));
                 String reporter = dataSnapshot.child("reporter").getValue(String.class);
                 Place location = new Place();
+                float virusCount = dataSnapshot.child("virusPPM").getValue(Float.class); // get the virus count
+                float contaminantCount = dataSnapshot.child("contaminantPPM").getValue(Float.class); // get the contaminant count
                 location.setAddress(dataSnapshot.child("location").child("address").getValue(String.class));
                 location.setName(dataSnapshot.child("location").child("name").getValue(String.class));
                 GenericTypeIndicator<List<Double>> t = new GenericTypeIndicator<List<Double>>() {};
@@ -69,7 +71,9 @@ public class PurityListActivity extends AppCompatActivity {
                 p.setWaterType(type);
                 p.setWaterCondition(condition);
                 p.setReportNumber(number);
-                Log.d("ListActivity", "Report #"+p.getReportNumber()+" retrieved from server.");
+                p.setVirusCount(virusCount); // set the virus count
+                p.setContaminantCount(contaminantCount); // set the contaminant count
+                Log.d("PurityListActivity", "Report #"+p.getReportNumber()+" retrieved from server.");
                 reports.add(p);
                 adapter.notifyDataSetChanged();
             }
@@ -114,7 +118,7 @@ public class PurityListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView number, reporter, place, water;
+            public TextView number, reporter, place, water, virus, contaminant;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -122,6 +126,8 @@ public class PurityListActivity extends AppCompatActivity {
                 reporter = (TextView) itemView.findViewById(R.id.reporterLabel);
                 place = (TextView) itemView.findViewById(R.id.PlaceName);
                 water = (TextView) itemView.findViewById(R.id.waterLabel);
+                virus = (TextView) itemView.findViewById(R.id.virusPPM);
+                contaminant = (TextView) itemView.findViewById(R.id.contaminantPPM);
             }
         }
 
@@ -143,28 +149,28 @@ public class PurityListActivity extends AppCompatActivity {
         public PurityListActivity.ReportAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
-            View reportView = inflater.inflate(R.layout.report_list_item_layout, parent, false);
-            PurityListActivity.ReportAdapter.ViewHolder viewHolder = new PurityListActivity.ReportAdapter.ViewHolder(reportView);
+            View purityReportView = inflater.inflate(R.layout.purityreport_list_item_layout, parent, false);
+            PurityListActivity.ReportAdapter.ViewHolder viewHolder = new PurityListActivity.ReportAdapter.ViewHolder(purityReportView);
             return viewHolder;
         }
 
         @Override
         public void onBindViewHolder(final PurityListActivity.ReportAdapter.ViewHolder holder, int position) {
-            final PurityReport report = reports.get(position);
-            holder.number.setText("Report #"+report.getReportNumber());
-            String placeName = report.getLocation().getName();
+            final PurityReport purityReport = reports.get(position);
+            holder.number.setText("Purity Report #" + purityReport.getReportNumber());
+            String placeName = purityReport.getLocation().getName();
             if (placeName.isEmpty()) {
-                holder.place.setText("Location: "+report.getLocation().getAddress());
+                holder.place.setText("Location: " + purityReport.getLocation().getAddress());
             } else {
-                holder.place.setText("Location: "+placeName+"\nAddress: "+report.getLocation().getAddress());
+                holder.place.setText("Location: "+placeName+"\nAddress: " + purityReport.getLocation().getAddress());
             }
-            ref = Database.getReference("users/"+report.getReporter());
+            ref = Database.getReference("users/" + purityReport.getReporter());
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String name = dataSnapshot.child("username").getValue(String.class);
                     SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
-                    holder.reporter.setText("Reported by "+ name + " on " + ft.format(report.getTimestamp()));
+                    holder.reporter.setText("Reported by "+ name + " on " + ft.format(purityReport.getTimestamp()));
                 }
 
                 @Override
@@ -172,11 +178,9 @@ public class PurityListActivity extends AppCompatActivity {
 
                 }
             });
-            holder.water.setText("Water Type: " + report.getWaterType()+ "\nWater Condition: "+ report.getWaterCondition());
-
-
-
-
+            holder.water.setText("Water Type: " + purityReport.getWaterType()+ "\nWater Condition: " + purityReport.getWaterCondition());
+            holder.virus.setText("Virus PPM: " + purityReport.getVirusCount());
+            holder.contaminant.setText("Contaminant PPM: " + purityReport.getContaminantCount());
         }
 
         @Override
