@@ -55,7 +55,7 @@ public class AppActivity extends AppCompatActivity {
     /**
      * Called when the Logout button is clicked.
      * Reloads the WelcomeActivity
-     * @param v the current view
+     * @param v the current application view
      */
     public void onLogout(View v) {
         mAuth.signOut();
@@ -65,7 +65,7 @@ public class AppActivity extends AppCompatActivity {
 
     /**
      * Called when the Edit Profile button is clicked.
-     * @param v the current view
+     * @param v the current application view
      */
     public void onProfileClick(View v) {
         Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
@@ -74,7 +74,7 @@ public class AppActivity extends AppCompatActivity {
 
     /**
      * Called when the Create Report button is clicked.
-     * @param v the current view
+     * @param v the current application view
      */
     public void onCreateReportClicked(View v) {
         Intent i = new Intent(getApplicationContext(), ReportActivity.class);
@@ -83,7 +83,7 @@ public class AppActivity extends AppCompatActivity {
 
     /**
      * Called when the View Report List button is clicked.
-     * @param v the current view
+     * @param v the current application view
      */
     public void onReportListClicked(View v) {
         Intent i = new Intent(getApplicationContext(), ListActivity.class);
@@ -92,7 +92,7 @@ public class AppActivity extends AppCompatActivity {
 
     /**
      * Called when the View Map button is clicked.
-     * @param v the current view
+     * @param v the current application view
      */
     public void onMapClicked(View v) {
         Intent i = new Intent (getApplicationContext(), MapActivity.class);
@@ -100,7 +100,7 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to click button for Purity Report
+     * Called when the Create Purity Report button is clicked.
      * @param v the current application view
      */
     public void onPurityReportClicked(View v) {
@@ -108,6 +108,19 @@ public class AppActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**
+     * Called when the View Purity Report List button is clicked.
+     * @param v the current application view
+     */
+    public void onPurityReportListClicked(View v) {
+        Intent i = new Intent(getApplicationContext(), PurityListActivity.class);
+        startActivity(i);
+    }
+
+    /**
+     * Method to click button for Graph
+     * @param v the current application view
+     */
     public void onGraphClicked(View v) {
         Intent i = new Intent(getApplicationContext(), GraphActivity.class);
         startActivity(i);
