@@ -60,8 +60,8 @@ public class PurityListActivity extends AppCompatActivity {
                 WaterCondition condition = WaterCondition.valueOf(dataSnapshot.child("waterCondition").getValue(String.class));
                 String reporter = dataSnapshot.child("reporter").getValue(String.class);
                 Place location = new Place();
-                float virusCount = dataSnapshot.child("virusPPM").getValue(Float.class); // get the virus count
-                float contaminantCount = dataSnapshot.child("contaminantPPM").getValue(Float.class); // get the contaminant count
+                float virusCount = dataSnapshot.child("virusCount").getValue(Float.class); // get the virus count
+                float contaminantCount = dataSnapshot.child("contaminantCount").getValue(Float.class); // get the contaminant count
                 location.setAddress(dataSnapshot.child("location").child("address").getValue(String.class));
                 location.setName(dataSnapshot.child("location").child("name").getValue(String.class));
                 GenericTypeIndicator<List<Double>> t = new GenericTypeIndicator<List<Double>>() {};
