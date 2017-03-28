@@ -1,5 +1,6 @@
 package edu.gatech.waterapp.Models;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -10,6 +11,10 @@ public class PurityReport extends Report {
 
         private float virusCount;
         private float contaminantCount;
+
+    public PurityReport(Date d, String s, Place p) {
+        super(d, s, p);
+    }
 
     public float getVirusCount() {
         return virusCount;

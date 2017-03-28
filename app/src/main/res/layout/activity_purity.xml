@@ -86,7 +86,7 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/virusPPM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -112,20 +112,20 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/conditionSpinner"
         android:layout_alignStart="@+id/conditionSpinner"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/virusPPM"
         android:layout_marginTop="28dp"
         android:text="Contaminant PPM" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/contaminantPPM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
         android:layout_alignBaseline="@+id/textView7"
         android:layout_alignBottom="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7"
         android:layout_toRightOf="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7" />
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
 
 </RelativeLayout>
