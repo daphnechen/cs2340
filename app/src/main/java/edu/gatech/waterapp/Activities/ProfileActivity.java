@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +29,6 @@ import java.util.Arrays;
 import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.Models.AccountType;
 import edu.gatech.waterapp.Models.User;
-import edu.gatech.waterapp.Models.UserList;
 import edu.gatech.waterapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -105,6 +103,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Allows user to edit their username when they click the Edit Username option.
+     * @param v the current application view
+     */
     public void onNameClicked(View v) {
         final Context c = v.getContext();
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -136,6 +138,10 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Allows user to edit their email when they click the Edit Email option.
+     * @param v the current application view
+     */
     public void onEmailClicked(View v) {
         final Context c = v.getContext();
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

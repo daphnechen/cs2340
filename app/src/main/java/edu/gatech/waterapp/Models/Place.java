@@ -51,6 +51,10 @@ public class Place {
         this.address = address;
     }
 
+    /**
+     * Creates a Map representation of the Place
+     * @return a HashMap representation of the Place
+     */
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);

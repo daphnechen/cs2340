@@ -74,6 +74,10 @@ public class User {
     }
 
 
+    /**
+     * Creates a Map representation of the User information
+     * @return a HashMap representation of the User information
+     */
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         map.put("email", email);

@@ -68,6 +68,10 @@ public class Report {
         return waterType;
     }
 
+    /**
+     * Creates a Map representation of the Report information
+     * @return a HashMap representation of the Report information
+     */
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("reportNumber", reportNumber);
