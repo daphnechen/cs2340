@@ -19,6 +19,7 @@ import static edu.gatech.waterapp.Controllers.Database.mAuth;
 public class AppActivity extends AppCompatActivity {
 
     Button purityButton;
+    Button purityListButton;
     Button graphButton;
 
     @Override
@@ -26,6 +27,7 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         purityButton = (Button) findViewById(R.id.purityButton);
+        purityListButton = (Button) findViewById(R.id.purityReportButton);
         graphButton = (Button)  findViewById(R.id.graphButton);
         DatabaseReference ref = Database.getReference("users/" + Database.currentUser.getUid() + "/accountType");
         ref.addValueEventListener(new ValueEventListener() {
@@ -34,8 +36,10 @@ public class AppActivity extends AppCompatActivity {
                 String accountType = dataSnapshot.getValue(String.class);
                 if ("USER".equals(accountType)) {
                     purityButton.setVisibility(View.GONE);
+                    purityListButton.setVisibility(View.GONE);
                 } else {
                     purityButton.setVisibility(View.VISIBLE);
+                    purityListButton.setVisibility(View.VISIBLE);
                 }
                 if ("MANAGER".equals(accountType)) {
                     graphButton.setVisibility(View.VISIBLE);
