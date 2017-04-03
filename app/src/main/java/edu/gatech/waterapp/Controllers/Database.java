@@ -17,6 +17,10 @@ public final class Database {
     public static FirebaseUser currentUser;
     public static boolean initialized = false;
 
+    public static boolean isInitialized() {
+        return initialized;
+    }
+
 
     public static void initialize() {
         if (!initialized) {
