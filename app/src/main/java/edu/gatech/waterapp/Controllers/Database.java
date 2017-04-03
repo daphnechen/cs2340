@@ -15,7 +15,7 @@ public final class Database {
     public static FirebaseAuth.AuthStateListener mAuthListener;
     private static FirebaseDatabase database;
     public static FirebaseUser currentUser;
-    private static boolean initialized = false;
+    public static boolean initialized = false;
 
     public static boolean isInitialized() {
         return initialized;
