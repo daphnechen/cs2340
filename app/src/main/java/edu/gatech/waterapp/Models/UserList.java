@@ -13,7 +13,7 @@ import java.util.List;
  */
 public final class UserList {
 
-    private static HashMap<String, User> userList = new HashMap<>();
+    private static final HashMap<String, User> userList = new HashMap<>();
 
     public static User currentUser = null;
 

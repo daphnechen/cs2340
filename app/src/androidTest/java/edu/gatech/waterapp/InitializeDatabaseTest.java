@@ -18,11 +18,9 @@ import edu.gatech.waterapp.Controllers.Database;
 @RunWith(AndroidJUnit4.class)
 public class InitializeDatabaseTest {
 
-    private Context context;
-
     @Before
     public void setUp() {
-        context = InstrumentationRegistry.getTargetContext();
+        Context context = InstrumentationRegistry.getTargetContext();
         FirebaseApp.initializeApp(context);
         Database.mAuth = null;
         Database.mAuthListener = null;

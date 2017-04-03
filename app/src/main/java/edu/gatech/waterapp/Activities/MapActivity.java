@@ -38,9 +38,8 @@ import edu.gatech.waterapp.R;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    private LatLngBounds boundaries = new LatLngBounds(new LatLng(33.77, -84.4073), new LatLng(33.7815, -84.3878));
+    private final LatLngBounds boundaries = new LatLngBounds(new LatLng(33.77, -84.4073), new LatLng(33.7815, -84.3878));
     private List<Report> reports;
-    private DatabaseReference ref;
     private Map<Marker,Report> markerMap;
 
     @Override
@@ -62,7 +61,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         reports = new ArrayList<>();
         markerMap = new HashMap<>();
-        ref = Database.getReference("reports");
+        DatabaseReference ref = Database.getReference("reports");
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override

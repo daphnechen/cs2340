@@ -38,9 +38,7 @@ import edu.gatech.waterapp.R;
 public class PurityListActivity extends AppCompatActivity {
 
     private List<PurityReport> reports;
-    private DatabaseReference ref;
 
-    private RecyclerView reportView;
     private PurityListActivity.ReportAdapter adapter;
 
     @Override
@@ -50,7 +48,7 @@ public class PurityListActivity extends AppCompatActivity {
 
         reports = new ArrayList<>();
 
-        ref = Database.getReference("purityReports");
+        DatabaseReference ref = Database.getReference("purityReports");
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -106,7 +104,7 @@ public class PurityListActivity extends AppCompatActivity {
             }
         });
 
-        reportView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView reportView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new PurityListActivity.ReportAdapter(this, reports);
         reportView.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -118,7 +116,12 @@ public class PurityListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView number, reporter, place, water, virus, contaminant;
+            public final TextView number;
+            public final TextView reporter;
+            public final TextView place;
+            public final TextView water;
+            public final TextView virus;
+            public final TextView contaminant;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -150,8 +153,7 @@ public class PurityListActivity extends AppCompatActivity {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
             View purityReportView = inflater.inflate(R.layout.purityreport_list_item_layout, parent, false);
-            PurityListActivity.ReportAdapter.ViewHolder viewHolder = new PurityListActivity.ReportAdapter.ViewHolder(purityReportView);
-            return viewHolder;
+            return new ViewHolder(purityReportView);
         }
 
         @Override

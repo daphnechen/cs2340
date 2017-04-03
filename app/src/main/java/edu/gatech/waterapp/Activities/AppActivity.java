@@ -18,9 +18,9 @@ import static edu.gatech.waterapp.Controllers.Database.mAuth;
 
 public class AppActivity extends AppCompatActivity {
 
-    Button purityButton;
-    Button purityListButton;
-    Button graphButton;
+    private Button purityButton;
+    private Button purityListButton;
+    private Button graphButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

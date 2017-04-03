@@ -36,7 +36,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private Spinner typeSpinner, conditionSpinner;
 
-    private int PLACE_PICKER_REQUEST = 13;
+    private final int PLACE_PICKER_REQUEST = 13;
     private Place location;
 
     @Override

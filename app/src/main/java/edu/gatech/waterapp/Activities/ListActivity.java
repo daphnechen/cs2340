@@ -1,7 +1,6 @@
 package edu.gatech.waterapp.Activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,12 +23,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.Models.Place;
 import edu.gatech.waterapp.Models.Report;
-import edu.gatech.waterapp.Models.User;
 import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
@@ -38,9 +35,7 @@ import edu.gatech.waterapp.R;
 public class ListActivity extends AppCompatActivity {
 
     private List<Report> reports;
-    private DatabaseReference ref;
 
-    private RecyclerView reportView;
     private ReportAdapter adapter;
 
     @Override
@@ -50,7 +45,7 @@ public class ListActivity extends AppCompatActivity {
 
         reports = new ArrayList<>();
 
-        ref = Database.getReference("reports");
+        DatabaseReference ref = Database.getReference("reports");
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -102,7 +97,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        reportView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView reportView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new ReportAdapter(this, reports);
         reportView.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -114,7 +109,10 @@ public class ListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView number, reporter, place, water;
+            public final TextView number;
+            public final TextView reporter;
+            public final TextView place;
+            public final TextView water;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -144,8 +142,7 @@ public class ListActivity extends AppCompatActivity {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
             View reportView = inflater.inflate(R.layout.report_list_item_layout, parent, false);
-            ViewHolder viewHolder = new ViewHolder(reportView);
-            return viewHolder;
+            return new ViewHolder(reportView);
         }
 
         @Override
