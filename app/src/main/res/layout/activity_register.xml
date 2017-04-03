@@ -13,14 +13,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="33dp"
         android:id="@+id/Email"
         android:text="Email Address"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/title"
+        android:layout_toLeftOf="@+id/submit"
+        android:layout_toStartOf="@+id/submit" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/email"
+        android:id="@+id/imageView"
+        android:layout_alignBottom="@+id/Email"
+        android:layout_alignLeft="@+id/usertext"
+        android:layout_alignStart="@+id/usertext" />
 
     <TextView
         android:text="Create New Account"
@@ -93,7 +100,7 @@
         android:hint="test@example.com"
         android:inputType="textEmailAddress"
         android:layout_below="@+id/Email"
-        android:layout_alignLeft="@+id/Email"
-        android:layout_alignStart="@+id/Email" />
+        android:layout_alignRight="@+id/submit"
+        android:layout_alignEnd="@+id/submit" />
 
 </RelativeLayout>
