@@ -1,12 +1,7 @@
 package edu.gatech.waterapp.Models;
 
-
-
 /**
- * Created by Derian on 2/27/2017.
- */
-
-/**
+ * @author Derian
  * Enum representation of the water conditions that can be selected
  * by the user when creating a report.
  */

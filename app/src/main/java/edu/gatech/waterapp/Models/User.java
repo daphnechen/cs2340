@@ -1,13 +1,11 @@
 package edu.gatech.waterapp.Models;
 
-/**
- * Created by Derian on 2/15/2017.
- */
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author Derian
  * Represents a user of the water app.
  */
 public class User {

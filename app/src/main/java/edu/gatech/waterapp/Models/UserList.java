@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Derian on 2/15/2017.
- */
-
-/**
+ * @author Derian
  * A static map holding the users in this application.
  */
 public final class UserList {

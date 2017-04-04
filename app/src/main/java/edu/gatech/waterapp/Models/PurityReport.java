@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Created by daphnechen on 3/13/17.
+ * @author Daphne
  */
 
 public class PurityReport extends Report {
