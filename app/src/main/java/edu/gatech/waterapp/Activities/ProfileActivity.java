@@ -28,14 +28,12 @@ import java.util.Arrays;
 
 import edu.gatech.waterapp.Controllers.Database;
 import edu.gatech.waterapp.Models.AccountType;
-import edu.gatech.waterapp.Models.User;
 import edu.gatech.waterapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView nameLabel, emailLabel;
     private Spinner typeSpinner;
-    private User currentUser;
     private DatabaseReference ref;
 
     @Override
@@ -43,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ActionBar a = getSupportActionBar();
+        assert a != null;
         a.setHomeButtonEnabled(true);
         a.setDisplayHomeAsUpEnabled(true);
 
@@ -62,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
                 String username = dataSnapshot.child("username").getValue(String.class);
                 String email = Database.currentUser.getEmail();
                 AccountType acctype = AccountType.valueOf(dataSnapshot.child("accountType").getValue(String.class));
-                if (username != null || !username.isEmpty()) {
+                if (username != null && !username.isEmpty()) {
                     nameLabel.setText(username);
                 }
                 emailLabel.setText(email);

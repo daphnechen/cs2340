@@ -31,10 +31,6 @@ import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
 
-/**
- * Created by daphnechen on 3/27/17.
- */
-
 public class PurityListActivity extends AppCompatActivity {
 
     private List<PurityReport> reports;

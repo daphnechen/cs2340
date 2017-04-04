@@ -1,4 +1,4 @@
-package edu.gatech.waterapp.Activities;
+package edu.gatech.waterapp;
 
 import android.support.v7.app.AppCompatActivity;
 
@@ -8,9 +8,7 @@ import org.junit.Test;
 
 import edu.gatech.waterapp.Controllers.Database;
 
-/**
- * Created by daphnechen on 4/3/17.
- */
+
 public class LoginActivityTest extends AppCompatActivity {
 
     //private Database database;

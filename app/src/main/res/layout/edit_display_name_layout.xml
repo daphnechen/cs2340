@@ -6,7 +6,6 @@
     <TextView
         android:text="Edit username"
         android:layout_width="match_parent"
-        android:id="@+id/textView"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="normal|bold"

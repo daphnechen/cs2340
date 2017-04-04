@@ -24,7 +24,6 @@
         android:layout_width="20dp"
         android:layout_height="30dp"
         android:src="@mipmap/email"
-        android:id="@+id/imageView"
         android:layout_alignBottom="@+id/Email"
         android:layout_alignLeft="@+id/usertext"
         android:layout_alignStart="@+id/usertext" />

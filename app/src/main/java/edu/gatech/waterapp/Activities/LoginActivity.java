@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ActionBar a = getSupportActionBar();
+        assert a != null;
         a.setHomeButtonEnabled(true);
         a.setDisplayHomeAsUpEnabled(true);
         Database.initialize();
