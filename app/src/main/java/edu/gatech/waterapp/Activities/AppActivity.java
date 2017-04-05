@@ -122,7 +122,7 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to click button for Graph
+     * Called when the Show Graph button is clicked
      * @param v the current application view
      */
     public void onGraphClicked(View v) {

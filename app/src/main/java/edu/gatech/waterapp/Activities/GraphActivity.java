@@ -33,6 +33,7 @@ import edu.gatech.waterapp.Models.WaterCondition;
 import edu.gatech.waterapp.Models.WaterType;
 import edu.gatech.waterapp.R;
 
+
 public class GraphActivity extends AppCompatActivity {
 
     private List<Report> reports = new ArrayList<>();
@@ -109,6 +110,10 @@ public class GraphActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Called when the Create Graph button is clicked, creates the graph based on user input
+     * @param v the current application view
+     */
     public void onCreateGraphClicked(View v) {
         String year = ((EditText)findViewById(R.id.year)).getText().toString().trim();
         if (!year.equals("2017")) {
@@ -127,6 +132,7 @@ public class GraphActivity extends AppCompatActivity {
                 graph.setVisibility(View.GONE);
             } else {
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data.toArray(new DataPoint[data.size()]));
+                graph.removeAllSeries();
                 graph.addSeries(series);
                 final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
                 graph.getGridLabelRenderer().setNumVerticalLabels(4);
