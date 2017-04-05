@@ -41,7 +41,7 @@ public class AppActivity extends AppCompatActivity {
                     purityButton.setVisibility(View.VISIBLE);
                     purityListButton.setVisibility(View.VISIBLE);
                 }
-                if ("MANAGER".equals(accountType)) {
+                if ("MANAGER".equals(accountType) || "ADMIN".equals(accountType)) {
                     graphButton.setVisibility(View.VISIBLE);
                 } else {
                     graphButton.setVisibility(View.GONE);

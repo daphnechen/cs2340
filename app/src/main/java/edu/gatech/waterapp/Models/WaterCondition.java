@@ -6,5 +6,5 @@ package edu.gatech.waterapp.Models;
  * by the user when creating a report.
  */
 public enum WaterCondition {
-    WASTE, TREATABLE_CLEAR, TREATABLE_MUDDY, POTABLE
+    WASTE, TREATABLE_MUDDY, TREATABLE_CLEAR, POTABLE
 }
