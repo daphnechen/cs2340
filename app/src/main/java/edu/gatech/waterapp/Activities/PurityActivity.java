@@ -1,9 +1,11 @@
 package edu.gatech.waterapp.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -80,6 +82,8 @@ public class PurityActivity extends AppCompatActivity {
     public void onSubmitClicked(View v) {
         if (location == null) {
             Toast.makeText(getApplicationContext(), "Please select a location!", Toast.LENGTH_SHORT).show();
+        } else if (!fieldsComplete(location.toString().trim(), ((EditText) findViewById(R.id.virusPPM)).getText().toString().trim(), ((EditText) findViewById(R.id.contaminantPPM)).toString().trim())) {
+            Toast.makeText(getApplicationContext(), "One or more fields are incorrect or empty", Toast.LENGTH_SHORT).show();
         } else {
             final PurityReport report = new PurityReport(new Date(), Database.currentUser.getUid(), new edu.gatech.waterapp.Models.Place(location));
             report.setWaterCondition(WaterCondition.values()[conditionSpinner.getSelectedItemPosition()]);
@@ -128,6 +132,30 @@ public class PurityActivity extends AppCompatActivity {
                 ((TextView)findViewById(R.id.locationText)).setText("Selected: " + location.getName());
             }
         }
+    }
+
+    public boolean fieldsComplete(String location, String virus, String contaminant) {
+
+        boolean fieldValidity = true;
+
+        if (location.equals("") || virus.equals("") || contaminant.equals("")) {
+            fieldValidity = false;
+        }
+//        else { // condition of virus or contaminant being empty already checked
+//            for (int i = 0; i < contaminant.length(); i++) {
+//                if ((contaminant.charAt(i) < 48 && contaminant.charAt(i) != 46) || contaminant.charAt(i) > 57) {
+//                    fieldValidity = false;
+//                    break;
+//                }
+//            }
+//            for (int j = 0; j < virus.length(); j++) {
+//                if ((virus.charAt(j) < 48 && virus.charAt(j) != 46) || virus.charAt(j) > 57) {
+//                    fieldValidity = false;
+//                    break;
+//                }
+//            }
+//        }
+        return fieldValidity;
     }
 
 }
