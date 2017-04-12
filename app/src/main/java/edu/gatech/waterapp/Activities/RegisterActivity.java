@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     } else {
                         DatabaseReference ref = Database.getReference("users");
-                        FirebaseUser user =  task.getResult().getUser();
+                        FirebaseUser user = task.getResult().getUser();
                         AccountType type = AccountType.values()[typeSpinner.getSelectedItemPosition()];
                         User u = new User(email, type);
                         ref.child(user.getUid()).setValue(u.toMap());
@@ -128,7 +128,25 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
+
+    /**
+     *
+     * @param email the email the user enters
+     * @param password the password the user enters
+     * @return true if fields are valid, and false otherwise
+     */
+    public boolean fieldsComplete(String email, String password) {
+        boolean fieldValidity = true;
+
+        if (email.equals("") || password.equals("")) {
+            fieldValidity = false;
+        }
+        if (!(email.contains("@") && email.contains("."))) {
+            fieldValidity = false;
+        }
+
+        return fieldValidity;
+    }
+
 }

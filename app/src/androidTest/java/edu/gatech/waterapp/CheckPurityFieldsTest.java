@@ -1,7 +1,7 @@
 package edu.gatech.waterapp;
 
 /**
- * Created by coreycaskey on 4/9/17.
+ * @author Corey Caskey
  */
 
 import org.junit.Before;

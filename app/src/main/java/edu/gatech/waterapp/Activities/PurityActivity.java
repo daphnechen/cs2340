@@ -134,6 +134,13 @@ public class PurityActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param location the report location set by the user
+     * @param virus the virus set by the user
+     * @param contaminant  the contaminant set by the user
+     * @return true if fields are valid, and false otherwise
+     */
     public boolean fieldsComplete(String location, String virus, String contaminant) {
 
         boolean fieldValidity = true;
