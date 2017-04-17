@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,6 +64,7 @@ public class AppActivity extends AppCompatActivity {
      */
     public void onLogout(View v) {
         mAuth.signOut();
+        LoginManager.getInstance().logOut();
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
         startActivity(i);
     }
