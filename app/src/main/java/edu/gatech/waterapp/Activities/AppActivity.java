@@ -1,8 +1,10 @@
 package edu.gatech.waterapp.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,7 @@ public class AppActivity extends AppCompatActivity {
     private Button purityButton;
     private Button purityListButton;
     private Button graphButton;
+    static public Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class AppActivity extends AppCompatActivity {
         LoginManager.getInstance().logOut();
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
         LoginActivity.mp.stop();
+        AppActivity.vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        AppActivity.vibe.vibrate(120);
         startActivity(i);
     }
 

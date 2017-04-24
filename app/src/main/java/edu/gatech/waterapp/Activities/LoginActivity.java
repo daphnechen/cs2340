@@ -1,7 +1,9 @@
 package edu.gatech.waterapp.Activities;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -190,6 +192,8 @@ public class LoginActivity extends AppCompatActivity {
                                     mp = MediaPlayer.create(getApplicationContext(), R.raw.piano);
                                     mp.start();
                                     mp.setLooping(true);
+                                    AppActivity.vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    AppActivity.vibe.vibrate(120);
                                     startActivity(j);
                                 }
                             }
