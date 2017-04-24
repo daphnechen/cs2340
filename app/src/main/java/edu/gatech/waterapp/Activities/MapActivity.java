@@ -1,6 +1,12 @@
 package edu.gatech.waterapp.Activities;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +47,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private final LatLngBounds boundaries = new LatLngBounds(new LatLng(33.77, -84.4073), new LatLng(33.7815, -84.3878));
     private List<Report> reports;
     private Map<Marker,Report> markerMap;
+    private boolean isLocationEnabled;
+    private int MY_PERMISSIONS_REQUEST_LOCATION = 17;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(false);
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            isLocationEnabled = true;
+            mMap.setMyLocationEnabled(true);
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+        }
         mMap.setLatLngBoundsForCameraTarget(boundaries);
         mMap.setMinZoomPreference(13);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(boundaries.getCenter(), 16));
@@ -180,6 +197,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             MarkerOptions marker = new MarkerOptions().position(report.getLocation().getLocation());
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, report);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if(requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // permission was granted
+                isLocationEnabled = true;
+                try {
+                    mMap.setMyLocationEnabled(true);
+                } catch (SecurityException e) {}
+            } else {
+                // permission denied. Disable the functionality that depends on this permission.
+                isLocationEnabled = false;
+                try {
+                    mMap.setMyLocationEnabled(false);
+                } catch (SecurityException e) {}
+            }
         }
     }
 
