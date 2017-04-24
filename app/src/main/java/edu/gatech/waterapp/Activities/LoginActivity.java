@@ -1,5 +1,5 @@
 package edu.gatech.waterapp.Activities;
-
+import android.media.MediaPlayer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,6 +43,7 @@ import static edu.gatech.waterapp.Controllers.Database.mAuth;
 public class LoginActivity extends AppCompatActivity {
 
     private CallbackManager mCallBackManager;
+    public static MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +187,9 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     Intent j = new Intent(getApplicationContext(), AppActivity.class);
+                                    mp = MediaPlayer.create(getApplicationContext(), R.raw.piano);
+                                    mp.start();
+                                    mp.setLooping(true);
                                     startActivity(j);
                                 }
                             }

@@ -1,6 +1,7 @@
 package edu.gatech.waterapp.Activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -66,6 +67,7 @@ public class AppActivity extends AppCompatActivity {
         mAuth.signOut();
         LoginManager.getInstance().logOut();
         Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
+        LoginActivity.mp.stop();
         startActivity(i);
     }
 
