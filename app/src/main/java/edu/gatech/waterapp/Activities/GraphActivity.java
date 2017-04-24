@@ -154,5 +154,33 @@ public class GraphActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     *
+     * @param year that can be passed in for the graph
+     * @return boolean on whether the year is in the current format
+     */
+    public boolean fieldsComplete(String year) {
+
+        boolean fieldValidity = true;
+
+        if (year.equals("")) {
+            fieldValidity = false;
+        } else {
+            if (year.length() != 4) {
+                fieldValidity = false;
+                return fieldValidity;
+            }
+            for (int i = 0; i < year.length(); i++) {
+                if (year.charAt(i) < 48 || year.charAt(i) > 57) {
+                    fieldValidity = false;
+                }
+            }
+            if (year.charAt(0) < 50 && year.charAt(0) >= 48) {
+                fieldValidity = false;
+            }
+        }
+        return fieldValidity;
+    }
 }
 
