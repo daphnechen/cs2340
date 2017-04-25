@@ -9,12 +9,12 @@
         android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
         android:onClick="onProfileClick"
-        android:text="Edit Profile" />
+        android:text="Edit Profile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/logout"
@@ -25,8 +25,8 @@
         android:text="Logout"
         android:textColor="@color/cast_expanded_controller_background_color"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/reportButton"
+        android:layout_alignEnd="@+id/reportButton" />
 
     <Button
         android:id="@+id/reportButton"
@@ -51,49 +51,55 @@
 
 
     <Button
-        android:text="View Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/mapButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/graphButton"
+        android:layout_alignStart="@+id/graphButton"
+        android:layout_below="@+id/logout"
+        android:layout_marginTop="73dp"
+        android:background="@color/cast_intro_overlay_button_background_color"
         android:onClick="onMapClicked"
-        android:layout_above="@+id/graphButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp" />
+        android:text="View Map" />
 
     <Button
-        android:text="View Report List"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/mapButton"
+        android:layout_alignBottom="@+id/mapButton"
+        android:layout_alignEnd="@+id/purityReportButton"
+        android:layout_alignRight="@+id/purityReportButton"
+        android:background="@color/colorAccent"
         android:onClick="onReportListClicked"
-        android:layout_above="@+id/mapButton"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button3" />
+        android:text="View Report List" />
 
     <Button
         android:id="@+id/graphButton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/reportButton"
-        android:layout_marginBottom="169dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
-        android:layout_toEndOf="@+id/purityButton"
-        android:layout_toRightOf="@+id/purityButton"
         android:background="@color/cast_intro_overlay_button_background_color"
         android:onClick="onGraphClicked"
-        android:text="Show Graph" />
+        android:text="Show Graph"
+        android:layout_alignBaseline="@+id/purityReportButton"
+        android:layout_alignBottom="@+id/purityReportButton"
+        android:layout_alignRight="@+id/reportButton"
+        android:layout_alignEnd="@+id/reportButton"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp" />
 
     <Button
         android:id="@+id/purityReportButton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:background="@color/colorAccent"
         android:onClick="onGraphClicked"
         android:text="Purity Report"
-        android:layout_alignTop="@+id/graphButton"
-        android:layout_toLeftOf="@+id/graphButton"
-        android:layout_toStartOf="@+id/graphButton" />
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_above="@+id/purityButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="91dp" />
 
 </RelativeLayout>

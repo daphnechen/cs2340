@@ -13,18 +13,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="34dp"
         android:id="@+id/Email"
         android:text="Email Address"
         android:layout_below="@+id/title"
-        android:layout_toLeftOf="@+id/submit"
-        android:layout_toStartOf="@+id/submit" />
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:src="@mipmap/email"
-        android:layout_alignBottom="@+id/Email"
         android:layout_alignLeft="@+id/usertext"
         android:layout_alignStart="@+id/usertext" />
 
@@ -61,14 +53,15 @@
         android:hint="enter password here" />
 
     <Button
-        android:text="Submit"
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/submit"
-        android:onClick="onSubmit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp" />
+        android:layout_marginBottom="33dp"
+        android:background="@color/cast_intro_overlay_button_background_color"
+        android:onClick="onSubmit"
+        android:text="Submit" />
 
     <TextView
         android:text="Account Type"
